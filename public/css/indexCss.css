@@ -92,6 +92,10 @@ body{
 #nav ul li.curr{
     background:#5580fb;
 }
+#myCarousel{
+    width: 90%;
+    margin: 0 auto;
+}
 #carouselstyle{
     height: 400px;
     margin-top: 51px;
@@ -101,6 +105,17 @@ body{
     margin: 0 auto;
     padding-top: 20px;
 }
-.transition{
+/*.transition{
     transition:width 2s,height 2s;
+}*/
+#movieAllInfo ul li img{
+    width: 200px;
+    height: 250px;
+}
+#movieAllInfo ul li{
+    width: 200px;
+    float: left;
+    height: 280px;
+    margin-left: 50px;
+    margin-bottom: 10px;
 }
