@@ -19,7 +19,11 @@ function user_search_movie(movie_name) {
     }
     function show_movie(movies) {
     let movie_search_result=document.getElementById('movie_search_result');
-    movie_search_result.innerHTML="";
+        movie_search_result.innerHTML='';
+        let h2=document.createElement('h2');
+        movie_search_result.appendChild(h2);
+        h2.innerHTML='搜索 结果:';
+        h2.setAttribute('class','h1_search');
     for (let movie of movies){
         let movie_search=document.createElement('div');
 

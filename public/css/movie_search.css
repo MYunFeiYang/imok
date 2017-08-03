@@ -4,18 +4,26 @@
     margin: auto;
     /*padding: 50px;*/
 }
-#movie_search_result .movie{
-    width: 60%;
+#movie_search_result .movie,.h1_search{
+    width: 50%;
     height:auto;
-    clear: both;
-    margin: 20px auto;
-    padding: 10px;
+    margin: 0px auto;
     position:relative;
-    top:60px;
-    border-bottom: 1px solid gray;
+    top:100px;
+    border-bottom: 1px solid gainsboro;
     border-radius: 5px;
+    padding-bottom: 10px;
 }
-
+#movie_search_result .movie{
+    clear: both;
+    padding: 10px 10px 20px 10px;
+}
+#movie_search_result a{
+    text-decoration-line: none;
+}
+#movie_search_result a:hover{
+    text-decoration-line: none;
+}
 #movie_search_result .movie img{
     float: left;
     margin: 0px 30px;
@@ -24,6 +32,9 @@
 }
 #movie_search_result .movie span{
     display: block;
-    color: dimgray;
+    color: grey;
     font-size: 18px;
+}
+#movie_search_result .movie span:hover{
+    color: black;
 }
