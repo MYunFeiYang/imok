@@ -123,13 +123,12 @@ app.get('/movie_search', function (req, res) {
         res.send(JSON.stringify(results));
     });
 });
-
-app.listen(8081,function () {
-    console.log("App is listening on port 8081!");
-});
 //随机剧情id
 function random(n, char) {
     let id = Math.ceil(Math.random() * n);
    // console.log(id-1);
     return char[id-1];
 }
+app.listen(8081,function () {
+    console.log("App is listening on port 8081!");
+});
