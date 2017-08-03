@@ -21,21 +21,24 @@ function user_search_movie(movie_name) {
     let movie_search_result=document.getElementById('movie_search_result');
     movie_search_result.innerHTML="";
     for (let movie of movies){
-        let alt=movie.alt;
-        let image=movie.image;
         let movie_search=document.createElement('div');
-        movie_search_result.appendChild(movie_search);
-        movie_search.setAttribute('class','movie');
+
         let detail=document.createElement('a');
-        movie_search.appendChild(detail);
+        movie_search_result.appendChild(detail);
         detail.setAttribute('href',`movieDetails.html?id=${movie.id}`);
+
+        detail.appendChild(movie_search);
+        movie_search.setAttribute('class','movie');
+
         let img=document.createElement('img');
-        detail.appendChild(img);
-        img.setAttribute('src',image);
-        img.setAttribute('alt',alt);
+        movie_search.appendChild(img);
+        img.setAttribute('src',movie.image);
+        img.setAttribute('alt',movie.alt);
+
         let title=document.createElement('span');
         movie_search.appendChild(title);
         title.innerHTML='名称:'+movie.title;
+
         let original_title=document.createElement('span');
         movie_search.appendChild(original_title);
         original_title.innerHTML='别称:'+movie.original_title;
