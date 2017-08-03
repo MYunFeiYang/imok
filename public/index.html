@@ -8,6 +8,9 @@
         <link rel="stylesheet" href="css/indexCss.css">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="js/indexJs.js"></script>
+        <script type="text/javascript" src="js/movie_search.js"></script>
+        <link type="text/css" rel="stylesheet" href="css/movie_search.css">
+
     </head>
     <body>
         <!--write your code here-->
@@ -27,7 +30,7 @@
                         <div class="form-group">
                             <input id="movie_name" type="text" class="form-control" placeholder="Search">
                         </div>
-                        <button type="submit" class="btn btn-default" onclick="movie_search()">搜索</button>
+                        <button type="button" class="btn btn-default" onclick="movie_search()">搜索</button>
                     </form>
                     <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown">
@@ -45,7 +48,7 @@
             </div><!-- /.container-fluid -->
         </nav>  <!--导航栏-->
 
-        <div id ="searchInfo"><!--点击搜索替换主页内容-->
+        <div id ="movie_search_result"><!--点击搜索替换主页内容-->
         <div id="nav" style="display: none">
             <ul>
                 <li>
@@ -143,6 +146,14 @@
 
         <ul id="movieAllInfo"></ul>
         </div>
-
+        <!--<div id="movie_search_result"></div>-->
     </body>
+    <script>
+        function movie_search() {
+            var movie_name={};
+            movie_name=document.getElementById('movie_name').value;
+            //alert(movie_name);
+            user_search_movie(movie_name);
+        }
+    </script>
 </html>

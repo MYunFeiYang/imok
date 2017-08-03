@@ -1,14 +1,15 @@
 #movie_search_result{
-    width: 60%;
+    width: 100%;
     height: auto;
     margin: auto;
-    padding: 50px;
+    /*padding: 50px;*/
 }
 #movie_search_result .movie{
-    width: 100%;
+    width: 60%;
     height:auto;
     clear: both;
-    margin: 30px;
+    margin: 50px auto;
+    padding: 10px 50px;
 }
 #movie_search_result .movie img{
     float: left;

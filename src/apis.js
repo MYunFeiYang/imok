@@ -7,8 +7,10 @@ let express = require('express');
 let orm = require('orm');
 let app = express();
 let bodyPaser = require('body-parser');
+let path = require('path');
 let urlencodedParser = bodyPaser.urlencoded({extended:true});
-const dbsrc = '/home/ggbond/Desktop/tw-movie-theater-master/src/movies.db';
+let appRoot = path.join(__dirname,'/');
+const dbsrc = '/home/zh/imok/src/movies.db';
 
 app.all('*', function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -18,7 +20,7 @@ app.all('*', function(req, res, next) {
     next();
 });
 
-app.use(orm.express(`sqlite://${dbsrc}`, {
+app.use(orm.express(`sqlite://${appRoot}movies.db`, {
     define: function (db, models, next) {
         models.Movie = db.define("movie", {
             title: String,
