@@ -1,0 +1,20 @@
+img {
+    width: 90%;
+    height: 90%;
+}
+#movieInfo p {
+    font-size : 15px;
+    font-weight: 700;
+}
+#movieInfo span {
+    color : #9d9d9d;
+    width : 60px;
+    text-align: left;
+    display:inline-block;
+}
+#movieIntroduction p {
+    text-indent: 2em;
+}
+#movieDetails{
+    margin-top: 50px;
+}
