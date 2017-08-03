@@ -32,11 +32,11 @@ $(document).ready(function () {
             $('#movieInfoDirectors').html('<span class="nsame">导演：</span>' + data.directors);
             $('#movieInfoCasts').html('<span class="name">主演：</span>' + data.casts);
             $('#movieInfoGenres').html('<span class="name">分类：</span>' + data.genres);
-            $('#movieIntroduction').html(data.alt);
+            $('#movieIntroduction').html(`<a href="${data.alt}">${data.alt}</a>`);
         }
     });
     $.ajax({
-        url:BASE_URL+'/movies/searchByMovieid'+'?id='+Request.id,
+        url:BASE_URL+'/movies/searchByMovieid'+'?movieid='+Request.id,
         type:'get',
         success:function (s) {
             console.log(s);
