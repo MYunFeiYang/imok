@@ -7,8 +7,10 @@
     <script src="bootstrap-3.3.7-dist/js/jquery-3.2.1.js"></script>
     <script src="bootstrap-3.3.7-dist/layer/layer.js"></script>
     <script src="bootstrap-3.3.7-dist/js/bootstrap.js"></script>
-    <script src="./js/movieDetails.js"></script>
+    <script src="js/movieDetails.js"></script>
+    <script src="js/movie_search.js"></script>
     <link rel="stylesheet" href="css/movieDetails.css">
+    <link rel="stylesheet" href="css/movie_search.css">
 </head>
 <body>
 <nav class="navbar navbar-default navbar-inverse nav-position">
@@ -17,7 +19,8 @@
         <div class="navbar-header">
             <a class="navbar-brand" href="index.html">我觉得还ok影院</a>
             <a class="navbar-brand" id="movieGenre"><span class="glyphicon glyphicon-th-list"></span></a>
-            <a class="navbar-brand" id="moveMovieGenre" style="display: none"><span class="glyphicon glyphicon-remove"></span></a>
+            <a class="navbar-brand" id="moveMovieGenre" style="display: none"><span
+                    class="glyphicon glyphicon-remove"></span></a>
         </div>
 
         <!-- Collehttp://localhost:63342/tw-movie-theater/index.html?_ijt=cks2oif4mvfv8ndu95je22dj1nct the nav links, forms, and other content for toggling -->
@@ -25,13 +28,14 @@
 
             <form id="selectInfo" class="navbar-form navbar-left">
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Search">
+                    <input type="text" class="form-control" placeholder="Search" id="movie_name">
                 </div>
-                <button type="submit" class="btn btn-default">Submit</button>
+                <button type="button" class="btn btn-default" onclick="movie_search()">搜索</button>
             </form>
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">关于我们 <span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">关于我们 <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="#">Action</a></li>
                         <li><a href="#">Another action</a></li>
@@ -45,55 +49,64 @@
     </div><!-- /.container-fluid -->
 </nav>  <!--导航栏-->
 
-
-<div id="movieDetails" class="container">
-    <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <h3 id="movieTitle"></h3>
+<div id="movie_search_result">
+    <div id="movieDetails" class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <h3 id="movieTitle"></h3>
+            </div>
         </div>
-    </div>
-    <hr>
-    <div class="row">
-        <div class="col-xs-3, col-sm-2 col-md-2"><img src="" id="movieImg"></div>
-        <div class="col-xs-9 col-sm-3 col-md-3" id="movieInfo">
-            <p id="movieInfoTitle"></p>
-            <p id="movieInfoOriginTitle"></p>
-            <p id="movieInfoYear"></p>
-            <p id="movieInfoRating"></p>
-            <p id="movieInfoDirectors"></p>
-            <p id="movieInfoCasts"></p>
-            <p id="movieInfoGenres"></p>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <h4>剧情简介：</h4>
-        </div>
-        <div class="col-xs-12 col-sm-8 col-md-6">
-            <p id="movieIntroduction"></p>
-        </div>
-    </div>
-
-</div>
-<div class="container">
-    <div class="row" id="Recommended">
         <hr>
-        <h4>相关推荐</h4>
-        <hr>
-        <div class="col-xs-4 col-sm-2 col-md-2" id="Recommended1">
+        <div class="row">
+            <div class="col-xs-3, col-sm-2 col-md-2"><img src="" id="movieImg"></div>
+            <div class="col-xs-9 col-sm-3 col-md-3" id="movieInfo">
+                <p id="movieInfoTitle"></p>
+                <p id="movieInfoOriginTitle"></p>
+                <p id="movieInfoYear"></p>
+                <p id="movieInfoRating"></p>
+                <p id="movieInfoDirectors"></p>
+                <p id="movieInfoCasts"></p>
+                <p id="movieInfoGenres"></p>
+            </div>
         </div>
-        <div class="col-xs-4 col-sm-2 col-md-2" id="Recommended2">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <h4>剧情简介：</h4>
+            </div>
+            <div class="col-xs-12 col-sm-8 col-md-6">
+                <p id="movieIntroduction"></p>
+            </div>
         </div>
-        <div class="col-xs-4 col-sm-2 col-md-2" id="Recommended3">
-        </div>
-        <div class="col-xs-4 col-sm-2 col-md-2" id="Recommended4">
-        </div>
-        <div class="col-xs-4 col-sm-2 col-md-2" id="Recommended5">
-        </div>
-        <div class="col-xs-4 col-sm-2 col-md-2" id="Recommended6">
-        </div>
+
     </div>
-    <hr>
+    <div class="container">
+        <div class="row" id="Recommended">
+            <hr>
+            <h4>相关推荐</h4>
+            <hr>
+            <div class="col-xs-4 col-sm-2 col-md-2" id="Recommended1">
+            </div>
+            <div class="col-xs-4 col-sm-2 col-md-2" id="Recommended2">
+            </div>
+            <div class="col-xs-4 col-sm-2 col-md-2" id="Recommended3">
+            </div>
+            <div class="col-xs-4 col-sm-2 col-md-2" id="Recommended4">
+            </div>
+            <div class="col-xs-4 col-sm-2 col-md-2" id="Recommended5">
+            </div>
+            <div class="col-xs-4 col-sm-2 col-md-2" id="Recommended6">
+            </div>
+        </div>
+        <hr>
+    </div>
 </div>
 </body>
+<script>
+    function movie_search() {
+        var movie_name = {};
+        movie_name = document.getElementById('movie_name').value;
+        //alert(movie_name);
+        user_search_movie(movie_name);
+    }
+</script>
 </html>

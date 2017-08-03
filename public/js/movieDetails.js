@@ -35,10 +35,13 @@ $(document).ready(function () {
             $('#movieIntroduction').html(`<a href="${data.alt}">${data.alt}</a>`);
         }
     });
+});
+$(document).ready(function () {
+    var Request = new UrlSearch();
     $.ajax({
-        url:BASE_URL+'/movies/searchByMovieid'+'?movieid='+Request.id,
-        type:'get',
-        success:function (s) {
+        url: BASE_URL + '/movies/searchByMovieid' + '?movieid=' + Request.id,
+        type: 'get',
+        success: function (s) {
             console.log(s);
             let total1 = `<a href="movieDetails.html?id=${s[0].id}"><img src='${s[0].image}'class='img-responsive img-rounded' height="148" width="210"><p class="text-center">${s[0].title}</p></a>`;
             $("#Recommended1").append(total1);
@@ -53,5 +56,5 @@ $(document).ready(function () {
             let total6 = `<a href="movieDetails.html?id=${s[5].id}"><img src='${s[5].image}'class='img-responsive img-rounded'height="90%" width="90%"><p class='text-center'>${s[5].title}</p></a>`;
             $("#Recommended6").append(total6);
         }
-    })
+    });
 });

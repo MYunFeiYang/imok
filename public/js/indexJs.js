@@ -1,6 +1,4 @@
-/**
- * Created by zh on 17-7-21.
- */
+'use strict';
 $(document).ready(function () {
 
     $("#movieGenre").click(function () {

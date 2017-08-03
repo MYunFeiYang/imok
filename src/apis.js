@@ -1,8 +1,4 @@
-/**
- * Created by ggbond on 17-8-1.
- */
 'use strict';
-
 let express = require('express');
 let orm = require('orm');
 let app = express();
@@ -19,7 +15,6 @@ app.all('*', function(req, res, next) {
     res.header("Content-Type", "application/json;charset=utf-8");
     next();
 });
-
 app.use(orm.express(`sqlite://${appRoot}movies.db`, {
     define: function (db, models, next) {
         models.Movie = db.define("movie", {
@@ -45,7 +40,6 @@ app.use(orm.express(`sqlite://${appRoot}movies.db`, {
         next();
     }
 }));
-
 //按类别id返回排名前20的电影
 app.get("/movies/searchByGenreid",function (req, res) {
    let genreid = req.query.genreid;
@@ -58,26 +52,6 @@ app.get("/movies/searchByGenreid",function (req, res) {
        });
    })
 
-});
-
-
-//按电影id返回相似电影 前20
-app.get("/movies/searchByMovieid",function (req, res) {
-    let movieid = req.query.movieid;
-    req.models.Movie_genre.find({movie_id:movieid},function (err, movie_genre) {
-        if(err) throw err;
-        let genre_idArray = movie_genre.map(i => i.genre_id);
-        let a = [];
-        a = genre_idArray
-        let randomId = random(genre_idArray.length, a);
-        req.models.Movie_genre.find({genre_id: randomId}, function (err, movie_genre) {
-            if(err) throw err;
-            let movie_idArray = movie_genre.map(i => i.movie_id);
-            req.models.Movie.find({id:movie_idArray},20,[ "rating", "Z" ],function (err, movie) {
-                res.send(movie);
-            });
-        });
-    });
 });
 
 //返回排名前20的电影
@@ -113,7 +87,27 @@ app.get("/movies", function (req, res) {
         });
     });
 });
-
+//按电影id返回相似电影 前20movieid
+app.get("/movies/searchByMovieid", function (req, res) {
+    let movieid = req.query.movieid;
+    console.log(movieid);
+    req.models.Movie_genre.find({movie_id: movieid}, function (err, movie_genre) {
+        if (err) throw err;
+        //console.log(JSON.stringify(movie_genre));
+        let genre_idArray = movie_genre.map(i => i.genre_id);//根据电影的id获取类型id数组
+        let a = [];
+        a = genre_idArray
+        let randomId = random(genre_idArray.length, a);
+        console.log(randomId);
+        req.models.Movie_genre.find({genre_id: randomId}, function (err, movie_genre) {
+            if (err) throw err;
+            let movie_idArray = movie_genre.map(i => i.movie_id);
+            req.models.Movie.find({id: movie_idArray}, 20, ["rating", "Z"], function (err, movie) {
+                res.send(movie);
+            });
+        });
+    });
+});
 //根据电影名模糊搜索
 app.get('/movie_search', function (req, res) {
     let movie_name=req.query.movie_name;
@@ -126,7 +120,6 @@ app.get('/movie_search', function (req, res) {
 //随机剧情id
 function random(n, char) {
     let id = Math.ceil(Math.random() * n);
-   // console.log(id-1);
     return char[id-1];
 }
 app.listen(8081,function () {
