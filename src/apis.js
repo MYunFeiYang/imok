@@ -67,7 +67,10 @@ app.get("/movies/searchByMovieid",function (req, res) {
     req.models.Movie_genre.find({movie_id:movieid},function (err, movie_genre) {
         if(err) throw err;
         let genre_idArray = movie_genre.map(i => i.genre_id);
-        req.models.Movie_genre.find({genre_id:genre_idArray},function (err, movie_genre) {
+        let a = [];
+        a = genre_idArray
+        let randomId = random(genre_idArray.length, a);
+        req.models.Movie_genre.find({genre_id: randomId}, function (err, movie_genre) {
             if(err) throw err;
             let movie_idArray = movie_genre.map(i => i.movie_id);
             req.models.Movie.find({id:movie_idArray},20,[ "rating", "Z" ],function (err, movie) {
@@ -124,3 +127,9 @@ app.get('/movie_search', function (req, res) {
 app.listen(8081,function () {
     console.log("App is listening on port 8081!");
 });
+//随机剧情id
+function random(n, char) {
+    let id = Math.ceil(Math.random() * n);
+   // console.log(id-1);
+    return char[id-1];
+}
