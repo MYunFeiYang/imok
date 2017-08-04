@@ -8,11 +8,12 @@
     width: 50%;
     height:auto;
     margin: 0px auto;
-    position:relative;
-    top:100px;
     border-bottom: 1px solid gainsboro;
     border-radius: 5px;
     padding-bottom: 10px;
+}
+#movie_search_result .h1_search{
+    margin: 100px auto 20px;
 }
 #movie_search_result .movie{
     clear: both;
