@@ -127,7 +127,7 @@ $(document).ready(function () {
 </li>`;
                     //let showGenreList = document.getElementById('movieGenreInfo');
                     showGenreList += html;
-                    $('#movie_search_result').html(showGenreList);
+                    $('#movieAllInfo').html(showGenreList);
                 }
             }
         })
