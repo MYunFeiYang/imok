@@ -122,7 +122,7 @@ $(document).ready(function () {
             success: function (data,status) {
                 var showGenreList = '';
                 for(let value of data){
-                    let html = `<li class="col-xs-4 col-sm-2 col-md-2" id="${value.id}" style="height:280px;text-align: center">
+                    let html = `<li class="col-xs-4 col-sm-2 col-md-2" id="${value.id}" style="height:280px;text-align: center;list-style: none">
 <a id="movieInfo" href="movieDetails.html?id=${value.id}">
 <img id="transition" now="${value.id}" src="${value.image}" style="width: 150px;height: 200px" alt="${value.alt}">
 <h4 style="margin-bottom: 2px;text-align: center">${value.title}</h4><sup>${value.original_title}</sup>
@@ -134,5 +134,13 @@ $(document).ready(function () {
                 }
             }
         })
+    });
+    $(document).on('mouseenter','#transition',function (e) {
+        let movieId = $(e.target).attr('now');
+        $('#'+movieId).find('img').css({"width":"165px","height":"215px","border":"6px solid #00BFFF","transition":"all 1s"});
+    });
+    $(document).on('mouseleave','#transition',function (e) {
+        let movieId = $(e.target).attr('now');
+        $('#'+movieId).find('img').css({"width":"150px","height":"200px","border":"0"});
     });
 });
