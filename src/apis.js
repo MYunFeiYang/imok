@@ -10,7 +10,6 @@ let bodyPaser = require('body-parser');
 let path = require('path');
 let urlencodedParser = bodyPaser.urlencoded({extended:true});
 let appRoot = path.join(__dirname,'/');
-const dbsrc = '/home/zh/imok/src/movies.db';
 
 app.all('*', function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -42,21 +41,32 @@ app.use(orm.express(`sqlite://${appRoot}movies.db`, {
             genre_id: String
         });
 
+        models.Comment = db.define("comment",{
+            movie_id: String,
+            user: String,
+            content: String
+        });
+
+        models.Introduction = db.define("introduction",{
+            movie_id: String,
+            content: String
+        });
+
         next();
     }
 }));
 
 //按类别id返回排名前20的电影
 app.get("/movies/searchByGenreid",function (req, res) {
-   let genreid = req.query.genreid;
-   // let movieid = req.query.movieid;
-   req.models.Movie_genre.find({genre_id:genreid},function (err, movie_genre) {
-       if(err) throw err;
-       let movie_idArray = movie_genre.map(i => i.movie_id);
-       req.models.Movie.find({id:movie_idArray},20,[ "rating", "Z" ],function (err, movie) {
+    let genreid = req.query.genreid;
+    // let movieid = req.query.movieid;
+    req.models.Movie_genre.find({genre_id:genreid},function (err, movie_genre) {
+        if(err) throw err;
+        let movie_idArray = movie_genre.map(i => i.movie_id);
+        req.models.Movie.find({id:movie_idArray},20,[ "rating", "Z" ],function (err, movie) {
             res.send(movie);
-       });
-   })
+        });
+    })
 
 });
 
@@ -68,7 +78,7 @@ app.get("/movies/searchByMovieid",function (req, res) {
         if(err) throw err;
         let genre_idArray = movie_genre.map(i => i.genre_id);
         let a = [];
-        a = genre_idArray
+        a = genre_idArray;
         let randomId = random(genre_idArray.length, a);
         req.models.Movie_genre.find({genre_id: randomId}, function (err, movie_genre) {
             if(err) throw err;
@@ -123,12 +133,24 @@ app.get('/movie_search', function (req, res) {
         res.send(JSON.stringify(results));
     });
 });
-//随机剧情id
-function random(n, char) {
-    let id = Math.ceil(Math.random() * n);
-   // console.log(id-1);
-    return char[id-1];
-}
+app.get('/movie/comments', function (req, res) {
+    let movieid =req.query.movieid;
+    req.models.Comment.find({movie_id:movieid}, function (err, result) {
+        if(err) throw err;
+        res.send(result);
+    })
+});
+
+app.get('/movie/introduction', function (req, res) {
+    let movieid = req.query.movieid;
+    req.models.Introduction.find({movie_id:movieid}, function (err, result) {
+        if(err) throw err;
+        res.send(result);
+    })
+});
+
+
+
 app.listen(8081,function () {
     console.log("App is listening on port 8081!");
 });
