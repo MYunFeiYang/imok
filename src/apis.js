@@ -9,12 +9,7 @@ let app = express();
 let bodyPaser = require('body-parser');
 let path = require('path');
 let urlencodedParser = bodyPaser.urlencoded({extended:true});
-<<<<<<< HEAD
-const dbsrc = '/home/ggbond/Desktop/imok/imok/src/movies.db';
-=======
 let appRoot = path.join(__dirname,'/');
-const dbsrc = '/home/zh/imok/src/movies.db';
->>>>>>> master
 
 app.all('*', function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -52,6 +47,11 @@ app.use(orm.express(`sqlite://${appRoot}movies.db`, {
             content: String
         });
 
+        models.Introduction = db.define("introduction",{
+            movie_id: String,
+            content: String
+        });
+
         next();
     }
 }));
@@ -78,7 +78,7 @@ app.get("/movies/searchByMovieid",function (req, res) {
         if(err) throw err;
         let genre_idArray = movie_genre.map(i => i.genre_id);
         let a = [];
-        a = genre_idArray
+        a = genre_idArray;
         let randomId = random(genre_idArray.length, a);
         req.models.Movie_genre.find({genre_id: randomId}, function (err, movie_genre) {
             if(err) throw err;
@@ -133,9 +133,6 @@ app.get('/movie_search', function (req, res) {
         res.send(JSON.stringify(results));
     });
 });
-<<<<<<< HEAD
-
-
 app.get('/movie/comments', function (req, res) {
     let movieid =req.query.movieid;
     req.models.Comment.find({movie_id:movieid}, function (err, result) {
@@ -144,14 +141,16 @@ app.get('/movie/comments', function (req, res) {
     })
 });
 
-=======
-//随机剧情id
-function random(n, char) {
-    let id = Math.ceil(Math.random() * n);
-   // console.log(id-1);
-    return char[id-1];
-}
->>>>>>> master
+app.get('/movie/introduction', function (req, res) {
+    let movieid = req.query.movieid;
+    req.models.Introduction.find({movie_id:movieid}, function (err, result) {
+        if(err) throw err;
+        res.send(result);
+    })
+});
+
+
+
 app.listen(8081,function () {
     console.log("App is listening on port 8081!");
 });
