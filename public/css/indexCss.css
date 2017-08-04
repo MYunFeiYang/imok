@@ -15,6 +15,10 @@ body{
     z-index: 100;
     opacity: 0.8;
 }
+#myCarousel{
+    width: 90%;
+    margin: 0 auto;
+}
 #selectInfo{
     margin-left: 45%;
 }
@@ -100,7 +104,5 @@ body{
     width: 80%;
     margin: 0 auto;
     padding-top: 20px;
-}
-.transition{
-    transition:width 2s,height 2s;
+    position: relative;
 }

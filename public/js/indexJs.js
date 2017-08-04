@@ -90,11 +90,15 @@ $(document).ready(function () {
         crossDomain:true,
         cache:false,
         success: function (data,status) {
-            for(let value of data){
-                let html = `<li class="col-xs-4 col-sm-2 col-md-2" id="${value.id}" style="height:280px;text-align: center">
-<a id="movieInfo" href="movieDetails.html?id=${value.id}">
-<img id="transition" now="${value.id}" src="${value.image}" style="width: 150px;height: 200px" alt="${value.alt}">
-<h4 style="margin-bottom: 2px;text-align: center">${value.title}</h4><sup>${value.original_title}</sup>
+            let value=18;
+            $('#changeMovieAll').click(function () {
+               value+=18;
+            });
+            for(let i=0;i<value;i++){
+                let html = `<li class="col-xs-4 col-sm-2 col-md-2" id="${data[i].id}" style="height:280px;text-align: center">
+<a id="movieInfo" href="movieDetails.html?id=${data[i].id}">
+<img id="transition" now="${data[i].id}" src="${data[i].image}" style="width: 150px;height: 200px" alt="${data[i].alt}">
+<div><h4 style="margin-bottom: 2px;text-align: center">${data[i].title}</h4><sup>${data[i].original_title}</sup></div>
 </a>
 </li>`;
                 let showList = document.getElementById('movieAllInfo');
@@ -102,15 +106,6 @@ $(document).ready(function () {
             }
         }
     });
-    /*$(document).on('mouseenter mouseleave','#transition',function (e) {
-        let movieId = $(e.target).attr('now');
-        $('#transition').css({"width" : "400px","height" : "450px"});
-    },function () {
-        $('#transition').css({"width" : "150px","height" : "200px"});
-    });*/
-    /*$(document).on('click','#movieInfo',function (e) {
-       let movieId =  $(e.target()).attr();
-    });*/
     /*点击分类向服务器发送请求显示该分类movies*/
     $("#nav ul li .hover p a").click(function(e){  //事件event
         e.preventDefault();
@@ -126,7 +121,7 @@ $(document).ready(function () {
                 for(let value of data){
                     let html = `<li class="col-xs-4 col-sm-2 col-md-2" id="${value.id}" style="height:280px;text-align: center">
 <a id="movieInfo" href="movieDetails.html?id=${value.id}">
-<img class="transition" src="${value.image}" style="width: 150px;height: 200px" alt="${value.alt}">
+<img id="transition" now="${value.id}" src="${value.image}" style="width: 150px;height: 200px" alt="${value.alt}">
 <h4 style="margin-bottom: 2px;text-align: center">${value.title}</h4><sup>${value.original_title}</sup>
 </a>
 </li>`;
@@ -137,5 +132,13 @@ $(document).ready(function () {
             }
         })
     })
+    $(document).on('mouseenter','#transition',function (e) {
+        let movieId = $(e.target).attr('now');
+        $('#'+movieId).find('img').css({"width":"165px","height":"215px","border":"6px solid #00BFFF","transition":"all 1s"});
+    });
+    $(document).on('mouseleave','#transition',function (e) {
+        let movieId = $(e.target).attr('now');
+        $('#'+movieId).find('img').css({"width":"150px","height":"200px","border":"0"});
+    });
 });
 
