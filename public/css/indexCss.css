@@ -97,7 +97,6 @@ body{
     background:#5580fb;
 }
 #carouselstyle{
-    height: 400px;
     margin-top: 51px;
 }
 #movieAllInfo{
@@ -105,4 +104,9 @@ body{
     margin: 0 auto;
     padding-top: 20px;
     position: relative;
+}
+.image-text {
+    position: absolute;
+    margin-top: 230px;
+    margin-left: -120px;
 }
