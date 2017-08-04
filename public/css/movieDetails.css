@@ -23,6 +23,7 @@ img {
 }
 #movieDetails{
     margin-top: 50px;
+    margin-left: -70px;
 }
 #movieComment p{
     background-color: #f1f1f1 ;
