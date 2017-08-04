@@ -1,0 +1,32 @@
+
+
+.footer {
+    width: 100%;
+    padding-top: 60px;
+    border-top: 1px solid #e1e1e1;
+}
+.footer ul{
+    width: 80%;
+    margin: 0px auto;
+    display: block;
+    list-style-type: disc;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    -webkit-padding-start: 40px;
+    background-color: black;
+}
+.footer ul li {
+    float: left;
+    padding: 0px 50px;
+    border-right:1px solid gray ;
+}
+.footer p{
+    clear: both;
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    color: gainsboro;
+}
+
