@@ -8,7 +8,7 @@ let orm = require('orm');
 let app = express();
 let bodyPaser = require('body-parser');
 let urlencodedParser = bodyPaser.urlencoded({extended:true});
-const dbsrc = '/home/ggbond/Desktop/tw-movie-theater-master/src/movies.db';
+const dbsrc = '/home/ggbond/Desktop/imok/imok/src/movies.db';
 
 app.all('*', function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -40,21 +40,27 @@ app.use(orm.express(`sqlite://${dbsrc}`, {
             genre_id: String
         });
 
+        models.Comment = db.define("comment",{
+            movie_id: String,
+            user: String,
+            content: String
+        });
+
         next();
     }
 }));
 
 //按类别id返回排名前20的电影
 app.get("/movies/searchByGenreid",function (req, res) {
-   let genreid = req.query.genreid;
-   // let movieid = req.query.movieid;
-   req.models.Movie_genre.find({genre_id:genreid},function (err, movie_genre) {
-       if(err) throw err;
-       let movie_idArray = movie_genre.map(i => i.movie_id);
-       req.models.Movie.find({id:movie_idArray},20,[ "rating", "Z" ],function (err, movie) {
+    let genreid = req.query.genreid;
+    // let movieid = req.query.movieid;
+    req.models.Movie_genre.find({genre_id:genreid},function (err, movie_genre) {
+        if(err) throw err;
+        let movie_idArray = movie_genre.map(i => i.movie_id);
+        req.models.Movie.find({id:movie_idArray},20,[ "rating", "Z" ],function (err, movie) {
             res.send(movie);
-       });
-   })
+        });
+    })
 
 });
 
@@ -117,6 +123,15 @@ app.get('/movie_search', function (req, res) {
         if (err) throw err;
         res.send(JSON.stringify(results));
     });
+});
+
+
+app.get('/movie/comments', function (req, res) {
+    let movieid =req.query.movieid;
+    req.models.Comment.find({movie_id:movieid}, function (err, result) {
+        if(err) throw err;
+        res.send(result);
+    })
 });
 
 app.listen(8081,function () {
