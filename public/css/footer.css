@@ -1,14 +1,17 @@
 
 
 .footer {
+    background: linear-gradient(white,darkgray);
     clear: both;
     width: 100%;
     height: auto;
     border-top: 1px solid #e1e1e1;
+    border-radius: 5px;
+    margin: 50px 0px 0px 0px;
 }
 .footer ul{
     width: 80%;
-    margin: 50px 10% 10px 10%;
+    margin: 20px 10% 10px 10%;
     display: block;
     background-color: black;
 }
@@ -22,7 +25,7 @@
     clear: both;
     width: 100%;
     text-align: center;
-    padding: 10px;
+    padding: 0px 10px 40px 10px;
     color: gainsboro;
 }
 
