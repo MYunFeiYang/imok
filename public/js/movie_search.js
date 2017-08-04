@@ -18,6 +18,8 @@ function user_search_movie(movie_name) {
     })
     }
     function show_movie(movies) {
+    let search_nav=document.getElementById('search_nav');
+    search_nav.setAttribute('style','background: linear-gradient(black,gainsboro);color:black;border:none');
     let movie_search_result=document.getElementById('movie_search_result');
         movie_search_result.innerHTML='';
         let h2=document.createElement('h2');
