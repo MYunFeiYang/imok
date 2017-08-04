@@ -1,17 +1,19 @@
 api-test:
-1.
+1.根据电影类型获得按评分排名的电影详细信息
 GET localhost:8081/movies/searchByGenreid?genreid=1
 response correct
-2.
+2.获得首页推荐电影（根据评分排序）
 GET localhost:8081/movies/all
 response correct
-3.
+3.根据电影id获得电影详细信息
 GET localhost:8081/movies?id=1301171
 response correct
-4.
+4.根据电影id获得相似电影推荐
 GET localhost:8081/movies/searchByMovieid?movieid=1301171
 response correct
-5.
+5.模糊搜索
 GET localhost:8081/movie_search?movie_name=鱼
 response correct
-
+6.获得电影简介
+GET localhost:8081//movie/introduction?movieid=1301171
+response correct

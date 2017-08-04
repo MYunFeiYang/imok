@@ -134,7 +134,7 @@ $(document).ready(function () {
     })
     $(document).on('mouseenter','#transition',function (e) {
         let movieId = $(e.target).attr('now');
-        $('#'+movieId).find('img').css({"width":"165px","height":"215px","border":"6px solid #00BFFF","transition":"all 1s"});
+        $('#'+movieId).find('img').css({"width":"165px","height":"215px","border":"6px solid #00BFFF","transition":"all .5s"});
     });
     $(document).on('mouseleave','#transition',function (e) {
         let movieId = $(e.target).attr('now');
