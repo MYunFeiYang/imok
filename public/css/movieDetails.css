@@ -24,3 +24,17 @@ img {
 #movieDetails{
     margin-top: 50px;
 }
+#movieComment p{
+    background-color: #f1f1f1 ;
+    /*border: 3px solid #8c8c8c;*/
+    padding: 10px;
+    margin: 10px;
+    width: 600px;
+    border-radius:10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius:10px ;
+    /*阴影*/
+    -moz-box-shadow:0 0 10px #f1f1f1;
+    -webkit-box-shadow:0 0 10px #f1f1f1;
+    box-shadow: 0 0 10px #f1f1f1;
+}

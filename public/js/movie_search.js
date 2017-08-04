@@ -1,11 +1,11 @@
 
 
 "use strict"
-let BASE_URL="http://localhost:8081";
+//let BASE_URL="http://localhost:8081";
 function user_search_movie(movie_name) {
     $.ajax({
         type: 'GET',
-        url: BASE_URL + '/movie_search'+`?movie_name=${movie_name}`,
+        url: 'http://localhost:8081'+ '/movie_search'+`?movie_name=${movie_name}`,
         crossDomain: true,
         success: function (data) {
             //postSuccess();

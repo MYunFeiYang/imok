@@ -55,3 +55,21 @@ $(document).ready(function () {
         }
     })
 });
+$(document).ready(function () {
+    var Request = new UrlSearch(); //实例化
+    $.ajax({
+        url: BASE_URL + '/movie/comments' + '?movieid=' + Request.id,
+        type: 'get',
+        success: function (data) {
+            console.log(data);
+            let total1=`<span class="glyphicon glyphicon-tag">评论人：${data[0].user}</span><p>${data[0].content}</p>`
+            $("#movieComment1").append(total1);
+            let total2=`<span class="glyphicon glyphicon-tag">评论人：${data[1].user}</span><p>${data[1].content}</p>`
+            $("#movieComment2").append(total2);
+            let total3=`<span class="glyphicon glyphicon-tag">评论人：${data[2].user}</span><p>${data[2].content}</p>`
+            $("#movieComment3").append(total3);
+            let total4=`<span class="glyphicon glyphicon-tag">评论人：${data[3].user}</span><p>${data[3].content}</p>`
+            $("#movieComment4").append(total4);
+        }
+    });
+});
